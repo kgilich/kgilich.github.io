@@ -5,4 +5,4 @@
 layout: home
 ---
 
-![Lac Blanc](/assets/images/lacblanc23.jpeg)
+![Lac Blanc 2023](/images/lacblanc23.jpeg)
