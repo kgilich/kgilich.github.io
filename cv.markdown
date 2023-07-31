@@ -9,4 +9,4 @@ Nejaktuálnější verzi najdete vždy na [LinkedIn](https://www.linkedin.com/in
 ## Aktuální zaměstnání
 [Seznam.cz](https://o.seznam.cz/) od roku 2021 do současnosti
 - Infrastructure Engineer
-- Our team developing and operating load balancer for all internal and external services in Seznam. We use IPVS for routing to L7 balancer servers using Envoy with configured SSL, HTTP or GRPC services with many options like HTTP headers, redirects etc. configured by users in a service in k8s API.
+- Náš tým vyvíjí a provozuje load balancer pro všechny interní a externí služby společnosti Seznam. Pro směrování na servery balanceru L7 používáme IPVS pomocí Envoy s nakonfigurovanými službami SSL, HTTP nebo GRPC s mnoha možnostmi, jako jsou HTTP hlavičky, přesměrování atd. konfigurovanými uživateli ve službě v API k8s.
