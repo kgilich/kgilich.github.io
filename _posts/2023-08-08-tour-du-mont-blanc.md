@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Tour du Mont Blanc"
-excerpt_separator: <!--more-->
+description: "Skoro průvodce jedním z nejhezčích treků v Evropě (TMB) včetně možného iterináře trasy"
 ---
 
 # (Nejspíše) nejhezčí trek v Evropě

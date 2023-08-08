@@ -21,14 +21,14 @@ layout: default
             {{ post.title | escape }}
           </a>
         </h3>
-        {%- if post.excerpt -%}
-          {{ post.excerpt }}
+        {%- if post.description -%}
+          {{ post.description }}
         {%- endif -%}
       </li>
       {%- endfor -%}
     </ul>
 
-    <p class="rss-subscribe">odebírat <a href="{{ "/feed.xml" | relative_url }}">via RSS</a></p>
+    <!--<p class="rss-subscribe">odebírat <a href="{{ "/feed.xml" | relative_url }}">via RSS</a></p>-->
   {%- endif -%}
 
 </div>
