@@ -28,7 +28,6 @@ url: "https://gilich.cz" # the base hostname & protocol for your site, e.g. http
 twitter_username: kgilich
 linkedin_username: kgilich
 github_username:  kgilich
-excerpt_separator: <!--more-->
 
 # Build settings
 theme: minima

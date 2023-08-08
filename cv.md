@@ -3,10 +3,8 @@ layout: page
 title: Životopis
 permalink: /cv/
 ---
-![Krkonošská 21 2023](/images/me-running.png)
-
 Nejaktuálnější verzi najdete vždy na [LinkedIn](https://www.linkedin.com/in/kgilich/).
-
+![Krkonošská 21 2023](/images/me-running.png)
 ## Aktuální zaměstnání
 ### [Seznam.cz](https://o.seznam.cz/) od roku 2021 do současnosti
 - Infrastructure Engineer

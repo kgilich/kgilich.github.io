@@ -1,6 +1,7 @@
 ---
 layout: post
 title:  "Tour du Mont Blanc"
+excerpt_separator: <!--more-->
 ---
 
 # (Nejspíše) nejhezčí trek v Evropě
