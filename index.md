@@ -5,4 +5,6 @@
 layout: home
 ---
 
-![Lac Blanc 2023](/images/lacblanc23.jpeg)
+![Lac Blanc 2023](/images/lacblanc23.jpeg)  
+
+___________________________________________
