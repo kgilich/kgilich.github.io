@@ -2,6 +2,7 @@
 layout: post
 title:  "#1 Nejhezčí běžecké trasy v Praze "
 description: "Tip na skvělou běžeckou trasu o délce 21 km, přímo v Praze a přitom mezi stromy."
+category: running
 ---
 
 # Běh z metra Kobylisy až na stanici Chodov
