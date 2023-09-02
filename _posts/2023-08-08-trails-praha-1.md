@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "#1 Nejhezčí běžecké trasy v Praze "
+title:  "#1 Nejhezčí běžecké trasy [Praha]"
 description: "Tip na skvělou běžeckou trasu o délce 21 km, přímo v Praze a přitom mezi stromy."
 category: running
 ---
