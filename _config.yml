@@ -25,7 +25,8 @@ description: >- # this means to ignore newlines until "baseurl:"
   Ve volném čase běhám, chodím po horách a cestuji. :smile:
 baseurl: "/" # the subpath of your site, e.g. /blog
 url: "https://gilich.cz" # the base hostname & protocol for your site, e.g. http://example.com
-twitter_username: kgilich
+
+instagram_username: kgilich
 linkedin_username: kgilich
 github_username:  kgilich
 
