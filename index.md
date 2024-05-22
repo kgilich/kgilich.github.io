@@ -4,5 +4,5 @@
 
 layout: home
 ---
-![Já - Kryštof](/images/me.png){:width="150px"}
+![Já - Kryštof](/images/me.png)
 
