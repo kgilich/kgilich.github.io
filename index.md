@@ -4,5 +4,5 @@
 
 layout: home
 ---
-![Lac Blanc 2023](/images/lacblanc.png)  
+![Já - Kryštof](/images/me.png)  
 
