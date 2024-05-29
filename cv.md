@@ -4,7 +4,10 @@ title: Životopis
 permalink: /cv/
 ---
 _________________
+{% raw %}
 {{ site.linkedin_badge }}
+{% endraw %}
+
 _________________
 
 ## [Seznam.cz](https://o.seznam.cz/) od roku 2021 do současnosti
