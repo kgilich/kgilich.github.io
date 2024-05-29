@@ -3,6 +3,8 @@ layout: page
 title: Životopis
 permalink: /cv/
 ---
+_________________
+
 <div class="badge-base LI-profile-badge" data-locale="cs_CZ" data-size="small" data-theme="light" data-type="HORIZONTAL" data-vanity="kgilich" data-version="v1">
   <a class="badge-base__link LI-simple-link" href="https://cz.linkedin.com/in/kgilich?trk=profile-badge"> </a>
 </div>
