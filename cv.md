@@ -5,9 +5,9 @@ permalink: /cv/
 ---
 _________________
 {% raw %}
-{{ site.linkedin_badge }}
+<script src="https://platform.linkedin.com/badges/js/profile.js" async defer type="text/javascript"></script>
+  <div class="badge-base LI-profile-badge" data-locale="cs_CZ" data-size="large" data-theme="light" data-type="VERTICAL" data-vanity="kgilich" data-version="v1"><a class="badge-base__link LI-simple-link" href="https://cz.linkedin.com/in/kgilich?trk=profile-badge"></a></div>
 {% endraw %}
-
 _________________
 
 ## [Seznam.cz](https://o.seznam.cz/) od roku 2021 do současnosti
