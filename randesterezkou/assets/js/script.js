@@ -109,6 +109,7 @@ function showIdea() {
 
         sendEmail(idea);
         buttonsElement.classList.add('hidden');
+        showIdea();
     });
 
     document.getElementById('noButton').addEventListener('click', () => {
