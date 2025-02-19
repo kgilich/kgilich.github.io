@@ -13,7 +13,21 @@ const repeatableIdeas = [
     "Přespávačka",
     "Společný čas jentak",
     "Masáž, čaj a pokec",
-    "Procházka a čaj"
+    "Procházka a čaj",
+    "Procházka po západu slunce",
+    "Společné malování nebo kreslení",
+    "Hraní her na xboxu",
+    "Procházka po městě a hledání skrytých zákoutí",
+    "Společné čtení knihy",
+    "Večer s hudbou a drinkem",
+    "Procházka po lese",
+    "Společné pečení sušenek",
+    "Večer s karetními hrami",
+    "Společné plánování výletu",
+    "Procházka po nábřeží",
+    "Večer s DIY projekty",
+    "Mazlení při svíčkách a podcastu",
+    "Společné poslouchání podcastů a relax na gauči"
 ];
 
 let oneTimeIdeas = [
@@ -27,8 +41,27 @@ let oneTimeIdeas = [
     "Jízda na koni",
     "Společné sledování západu slunce",
     "Úniková hra pro dva",
-    "Kreativní večer - výroba vlastního šperku",
-    "Dobrovolničení"
+    "Kreativní večer - výroba vlastního šperku navzájem",
+    "Dobrovolničení",
+    "Společné cvičení jógy",
+    "Společně zajdeme na kruháč",
+    "Večer s deskovými hrami v kavárně",
+    "Projížďka lodí po řece",
+    "Společné sledování hvězd",
+    "Návštěva místního festivalu nebo akce",
+    "Společné pečení pizzy",
+    "Procházka po pražském hradě a zahrádách",
+    "Společné tvoření scrapbooku",
+    "Návštěva planetária na Výstavišti",
+    "Společné tvoření svíček",
+    "Návštěva místního blešího trhu",
+    "Projížďka historickou tramvají",
+    "Urbex po Bulovce",
+    "Návštěva wellness",
+    "Roleplay rande - ty rozhodně hraješ sestřičku :D",
+    "Zajdeme na minigolf",
+    "Hra na pravdu nebo úkol",
+    "Společné vaření ve spodním prádle"
 ];
 
 const storedPasswordHash = "7d46392f594b19f98efb79f0a3d9cddd4be1fbc79f51f98e1f58f62dd0cddcdd";
