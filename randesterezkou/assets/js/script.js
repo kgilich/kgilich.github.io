@@ -90,7 +90,7 @@ function sendEmail(idea) {
 
         ${idea}
     `;
-
+    emailjs.init("AQjPK0xnpjX2YjDyO");
     emailjs.send("service_3ajmdvq", "template_c8gro55", {
         subject: 'Tip na rande',
         content: emailContent,
