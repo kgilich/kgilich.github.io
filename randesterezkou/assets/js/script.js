@@ -76,7 +76,7 @@ function showIdea() {
     let availableIdeas = [...repeatableIdeas, ...oneTimeIdeas].filter(idea => !savedData.shownIdeas.includes(idea));
     
     if (availableIdeas.length === 0) {
-        ideaElement.textContent = "Dnes už nemáme žádné další nápady. Zkus to zítra!";
+        ideaElement.textContent = "Dnes už žádné další nápady. Zkus to zítra!";
         buttonsElement.classList.add('hidden');
         return;
     }
