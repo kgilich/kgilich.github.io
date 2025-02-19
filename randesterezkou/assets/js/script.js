@@ -18,7 +18,7 @@ const oneTimeIdeas = [
 ];
 
 // Hash hesla (vygenerovaný bcryptem)
-const hashedPassword = "$2y$10$r1MNJVRAPwgpJHWew1.EcOZgasvCSg9p6GvMv0kfItb/pB8dCep1S";
+const hashedPassword = "$2y$04$1VTOyuRsmNJEc5x7DrQMN.aE4KbleS.gAo.qBQsX16E.ErP8rrBZq";
 
 async function checkPassword() {
     const password = document.getElementById('password').value;
