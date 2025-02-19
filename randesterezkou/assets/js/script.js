@@ -55,10 +55,10 @@ async function checkPassword() {
 }
 
 function showIdea() {
+    console.log("showIdea spuštěno");
     const dateElement = document.getElementById('date');
     const ideaElement = document.getElementById('idea');
     const buttonsElement = document.getElementById('buttons');
-    
     const today = new Date().toISOString().split("T")[0];
     let savedData = JSON.parse(localStorage.getItem("dailyIdea"));
 
@@ -74,7 +74,7 @@ function showIdea() {
     }
 
     let availableIdeas = [...repeatableIdeas, ...oneTimeIdeas].filter(idea => !savedData.shownIdeas.includes(idea));
-
+    
     if (availableIdeas.length === 0) {
         ideaElement.textContent = "Dnes už nemáme žádné další nápady. Zkus to zítra!";
         buttonsElement.classList.add('hidden');
@@ -88,29 +88,33 @@ function showIdea() {
     localStorage.setItem("dailyIdea", JSON.stringify(savedData));
 
     ideaElement.textContent = idea;
-    dateElement.textContent = `${today}`;
+
     buttonsElement.classList.remove('hidden');
+    console.log("Tlačítka by měla být viditelná");
 
     const yesButton = document.getElementById('yesButton');
     const noButton = document.getElementById('noButton');
+    
+    yesButton.replaceWith(yesButton.cloneNode(true));
+    noButton.replaceWith(noButton.cloneNode(true));
+    
+    document.getElementById('yesButton').addEventListener('click', () => {
+        console.log("Kliknuto na ANO");
+        savedData.accepted = true;
+        localStorage.setItem("dailyIdea", JSON.stringify(savedData));
 
-    yesButton.removeEventListener('click', handleYesClick);
-    noButton.removeEventListener('click', showIdea);
+        if (oneTimeIdeas.includes(idea)) {
+            oneTimeIdeas = oneTimeIdeas.filter(item => item !== idea);
+        }
 
-    yesButton.addEventListener('click', handleYesClick);
-    noButton.addEventListener('click', showIdea);
-}
+        sendEmail(idea);
+        buttonsElement.classList.add('hidden');
+    });
 
-function handleYesClick() {
-    let savedData = JSON.parse(localStorage.getItem("dailyIdea"));
-    savedData.accepted = true;
-    localStorage.setItem("dailyIdea", JSON.stringify(savedData));
-
-    const idea = document.getElementById('idea').textContent;
-    oneTimeIdeas = oneTimeIdeas.filter(item => item !== idea);
-
-    sendEmail(idea);
-    document.getElementById('buttons').classList.add('hidden');
+    document.getElementById('noButton').addEventListener('click', () => {
+        console.log("Kliknuto na NE");
+        showIdea();
+    });
 }
 
 function sendEmail(idea) {
