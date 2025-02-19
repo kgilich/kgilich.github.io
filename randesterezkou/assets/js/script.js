@@ -93,7 +93,7 @@ function showIdea() {
 function sendEmail(idea) {
     emailjs.send("service_3ajmdvq", "template_c8gro55", {
         subject: 'Tip na rande',
-        content: idea,
+        content: idea
     })
     .then(response => {
         // Zobrazení hlášky při úspěchu
