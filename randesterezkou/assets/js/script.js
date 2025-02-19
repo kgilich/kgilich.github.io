@@ -110,16 +110,18 @@ function showIdea() {
     yesButton.replaceWith(yesButton.cloneNode(true)); // "Reset" tlačítka
     noButton.replaceWith(noButton.cloneNode(true)); // "Reset" tlačítka
 
+    // Přidáme nové event listenery
     document.getElementById('yesButton').addEventListener('click', () => {
         savedData.accepted = true;
         localStorage.setItem("dailyIdea", JSON.stringify(savedData));
 
+        // Pokud je nápad z oneTimeIdeas, odstraníme ho
         if (oneTimeIdeas.includes(idea)) {
             oneTimeIdeas = oneTimeIdeas.filter(item => item !== idea);
         }
 
         sendEmail(idea);
-        buttonsElement.classList.add('hidden'); 
+        buttonsElement.classList.add('hidden'); // Skrytí tlačítek po kliknutí
     });
 
     document.getElementById('noButton').addEventListener('click', () => {
