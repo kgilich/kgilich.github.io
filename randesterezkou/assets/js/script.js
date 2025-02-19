@@ -63,47 +63,53 @@ function showIdea() {
     const buttonsElement = document.getElementById('buttons');
     
     const today = new Date().toISOString().split("T")[0];
-    const savedData = JSON.parse(localStorage.getItem("dailyIdea"));
+    let savedData = JSON.parse(localStorage.getItem("dailyIdea"));
 
-    if (savedData && savedData.date === today && savedData.accepted) {
+    // Reset pro nový den
+    if (!savedData || savedData.date !== today) {
+        savedData = { date: today, shownIdeas: [], accepted: false };
+        localStorage.setItem("dailyIdea", JSON.stringify(savedData));
+    }
+
+    // Pokud byl nápad již přijat, zobrazíme hlášku
+    if (savedData.accepted) {
         ideaElement.textContent = "Dnes už máš nápad vybraný! 🥰";
         buttonsElement.classList.add('hidden');
         return;
     }
 
+    // Vytvoříme pole dostupných nápadů (bez těch, které již byly zobrazeny)
     let availableIdeas = [...repeatableIdeas, ...oneTimeIdeas];
-    if (savedData && savedData.date === today) {
-        availableIdeas = availableIdeas.filter(idea => !savedData.shownIdeas.includes(idea));
-    }
+    availableIdeas = availableIdeas.filter(idea => !savedData.shownIdeas.includes(idea));
 
+    // Pokud už nejsou žádné nápady, zobrazíme hlášku
     if (availableIdeas.length === 0) {
         ideaElement.textContent = "Dnes už nemáme žádné další nápady. Zkus to zítra!";
         buttonsElement.classList.add('hidden');
         return;
     }
 
+    // Vybereme náhodný nápad z dostupných
     const randomIndex = Math.floor(Math.random() * availableIdeas.length);
     const idea = availableIdeas[randomIndex];
 
-    if (!savedData || savedData.date !== today) {
-        localStorage.setItem("dailyIdea", JSON.stringify({ date: today, shownIdeas: [idea], accepted: false }));
-    } else {
-        savedData.shownIdeas.push(idea);
-        localStorage.setItem("dailyIdea", JSON.stringify(savedData));
-    }
+    // Přidáme nápad do seznamu již zobrazených nápadů
+    savedData.shownIdeas.push(idea);
+    localStorage.setItem("dailyIdea", JSON.stringify(savedData));
 
+    // Zobrazíme nápad
     ideaElement.textContent = idea;
     dateElement.textContent = `${today}`;
     
-    // Zobraz tlačítka pro odpověď
+    // Zobrazíme tlačítka pro odpověď
     buttonsElement.classList.remove('hidden');
 
     // Nastavení událostí pro tlačítka
     document.getElementById('yesButton').addEventListener('click', () => {
-        const savedData = JSON.parse(localStorage.getItem("dailyIdea"));
         savedData.accepted = true;
         localStorage.setItem("dailyIdea", JSON.stringify(savedData));
 
+        // Pokud je nápad z oneTimeIdeas, odstraníme ho
         if (oneTimeIdeas.includes(idea)) {
             oneTimeIdeas = oneTimeIdeas.filter(item => item !== idea);
         }
@@ -111,7 +117,9 @@ function showIdea() {
         sendEmail(idea);
         buttonsElement.classList.add('hidden'); // Skrytí tlačítek po kliknutí
     });
+
     document.getElementById('noButton').addEventListener('click', () => {
+        // Zobrazíme další nápad
         showIdea();
     });
 }
