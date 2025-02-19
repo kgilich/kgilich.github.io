@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: terezka
 title: Rande s Terezkou
 ---
 
