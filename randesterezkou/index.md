@@ -16,4 +16,4 @@ title: Rande s Terezkou
     <p id="idea"></p>
 </div>
 
-<script src="{{ '/randesterezkou/assets/js/script.js' | relative_url }}"></script>
+<script src="{{ '/assets/js/script.js' | relative_url }}"></script>
