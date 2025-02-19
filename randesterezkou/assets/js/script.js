@@ -46,30 +46,54 @@ async function checkPassword() {
 function showIdea() {
     const dateElement = document.getElementById('date');
     const ideaElement = document.getElementById('idea');
-
-    const today = new Date().toISOString().split("T")[0]; 
+    const buttonsElement = document.getElementById('buttons');
+    
+    const today = new Date().toISOString().split("T")[0];
     const savedData = JSON.parse(localStorage.getItem("dailyIdea"));
 
     if (savedData && savedData.date === today) {
-        // Pokud už je dnes uložený nápad, použij ho
         ideaElement.textContent = savedData.idea;
     } else {
-        // Vyber nový nápad
         let idea;
         if (oneTimeIdeas.length > 0 && Math.random() < 0.5) {
-            // Vyber jednorázový nápad
             const randomIndex = Math.floor(Math.random() * oneTimeIdeas.length);
-            idea = oneTimeIdeas.splice(randomIndex, 1)[0]; // Odstraní nápad ze seznamu
+            idea = oneTimeIdeas.splice(randomIndex, 1)[0];
         } else {
-            // Vyber opakovatelný nápad
             idea = repeatableIdeas[Math.floor(Math.random() * repeatableIdeas.length)];
         }
 
-        // Ulož nový nápad do localStorage
         localStorage.setItem("dailyIdea", JSON.stringify({ date: today, idea }));
 
         ideaElement.textContent = idea;
     }
 
-    dateElement.textContent = `Dnes je: ${today}`;
+    dateElement.textContent = `${today}`;
+    
+    // Zobraz tlačítka pro odpověď
+    buttonsElement.classList.remove('hidden');
+
+    // Nastavení událostí pro tlačítka
+    document.getElementById('yesButton').addEventListener('click', () => sendEmail(idea));
+    document.getElementById('noButton').addEventListener('click', () => buttonsElement.classList.add('hidden'));
+}
+
+function sendEmail(idea) {
+    const emailContent = `
+        Dobrý den,
+
+        Tady je dnešní tip na rande:
+
+        ${idea}
+    `;
+
+    emailjs.send("service_3ajmdvq","template_c8gro55", {
+        subject: 'Tip na rande',
+        content: emailContent,
+    }, 'AQjPK0xnpjX2YjDyO')
+    .then(response => {
+        alert("A Tofin už o tvém zájmu ví! 🥰");
+    }, error => {
+        console.log('EmailJS error:', error);
+        alert("Nastala chyba, musíš Tofinovi sama říct, že se ti tenhle tip líbí 😔");
+    });
 }
