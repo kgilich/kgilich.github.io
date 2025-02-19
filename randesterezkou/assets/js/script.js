@@ -19,22 +19,13 @@ const oneTimeIdeas = [
 
 const usedOneTimeIdeas = new Set();
 
-// Hash hesla (SHA-256)
-const storedPasswordHash = "1df0d19f5d4b6f0c0a4d9b0abca8cddaa8eb6698fe7b55a6112ce7959c50908d";
+// Heslo (pro jednoduchost zatím v kódu, ale můžeš ho přesunout do zabezpečeného prostředí)
+const correctPassword = "tajneheslo"; // Nahraď skutečným heslem
 
-async function hashPassword(password) {
-    const encoder = new TextEncoder();
-    const data = encoder.encode(password);
-    const hashBuffer = await crypto.subtle.digest('SHA-256', data);
-    const hashArray = Array.from(new Uint8Array(hashBuffer));
-    return hashArray.map(byte => byte.toString(16).padStart(2, '0')).join('');
-}
-
-async function checkPassword() {
+function checkPassword() {
     const password = document.getElementById('password').value;
-    const hashedPassword = await hashPassword(password);
 
-    if (hashedPassword === storedPasswordHash) {
+    if (password === correctPassword) {
         document.getElementById('password-screen').classList.add('hidden');
         document.getElementById('content').classList.remove('hidden');
         showIdea();
