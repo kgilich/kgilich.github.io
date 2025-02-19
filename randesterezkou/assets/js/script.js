@@ -61,7 +61,9 @@ let oneTimeIdeas = [
     "Roleplay rande - ty rozhodně hraješ sestřičku :D",
     "Zajdeme na minigolf",
     "Hra na pravdu nebo úkol",
-    "Společné vaření ve spodním prádle"
+    "Společné vaření ve spodním prádle",
+    "Vzájemná masáž",
+    "Večeře ve Špejli"
 ];
 
 const storedPasswordHash = "7d46392f594b19f98efb79f0a3d9cddd4be1fbc79f51f98e1f58f62dd0cddcdd";
