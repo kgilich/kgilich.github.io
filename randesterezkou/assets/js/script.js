@@ -22,7 +22,10 @@ const oneTimeIdeas = [
     "Zajdeme si na masáž",
     "Pipča a chill",
     "Něco nového v Banh-Mi-Ba",
-    ""
+    "Jízda na koni",
+    "Společné sledování západu slunce",
+    "Úniková hra pro dva",
+    "Kreativní večer - výroba vlastního šperku"
 ];
 
 // Uložený hash hesla (SHA-256)
@@ -63,7 +66,7 @@ function showIdea() {
         ideaElement.textContent = savedData.idea;
     } else {
         let idea;
-        if (oneTimeIdeas.length > 0 && Math.random() < 0.5) {
+        if (oneTimeIdeas.length > 0 && Math.random() < 0.3) {
             const randomIndex = Math.floor(Math.random() * oneTimeIdeas.length);
             idea = oneTimeIdeas.splice(randomIndex, 1)[0];
         } else {
@@ -91,9 +94,12 @@ function showIdea() {
 }
 
 function sendEmail(idea) {
+    // Pokud je 'idea' objekt, získej z něj textovou hodnotu
+    const ideaText = typeof idea === 'object' ? JSON.stringify(idea) : idea;
+
     emailjs.send("service_3ajmdvq", "template_c8gro55", {
         subject: 'Tip na rande',
-        content: idea
+        content: ideaText, // Zde posíláme text
     })
     .then(response => {
         // Zobrazení hlášky při úspěchu
@@ -104,3 +110,4 @@ function sendEmail(idea) {
         alert("Nastala chyba, musíš Tofinovi sama říct, že se ti tenhle tip líbí 😔");
     });
 }
+
