@@ -6,7 +6,16 @@
     <title>Rande s Terezkou</title>
     <link rel="stylesheet" href="assets/css/style.css">
     <script src="assets/js/script.js"></script>
-    <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+    </script>
+    <script type="text/javascript">
+    (function(){
+        emailjs.init({
+            publicKey: "AQjPK0xnpjX2YjDyO",
+        });
+    })();
+    </script>
 </head>
 <body>
     <div id="password-screen">
@@ -22,7 +31,7 @@
         <p id="idea"></p>
     </div>
 
-    <p> Hodí se dneska? </p>
+    <p id="content" class="hidden"> Máš zájem? </p>
     <div id="buttons" class="hidden">
         <button id="yesButton">👍</button>
         <button id="noButton">👎</button>
