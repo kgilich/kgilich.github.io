@@ -1,20 +1,28 @@
 // Seznam nápadů
 const repeatableIdeas = [
-    "Večeře při svíčkách doma",
-    "Procházka v parku a zmrzlina",
-    "Kino a popcorn",
-    "Večerní piknik u řeky",
+    "Večeře a deskovky u mě",
+    "Procházka s Candy a zmrzlina",
+    "Netflix a masáž",
+    "Večerní procházka",
     "Společné vaření nového receptu",
     "Hra deskových her",
-    "Projížďka na kole"
+    "Projížďka na rekolech podél Vltavy",
+    "Brusle a běh na Ladronce",
+    "Lezení a mekáč",
+    "Sauna / Bazén",
+    "Výlet po okolí Prahy"
 ];
 
 const oneTimeIdeas = [
-    "Nocleh pod širákem",
-    "Návštěva muzea",
-    "Karaoke večer",
+    "Veřejné bruslení",
+    "Návštěva památky",
+    "Hospoda a pokec",
     "Výlet do zoo",
-    "Návštěva aquaparku"
+    "Návštěva aquaparku",
+    "Zajdeme si na masáž",
+    "Pipča a chill",
+    "Něco nového v Banh-Mi-Ba",
+    ""
 ];
 
 // Uložený hash hesla (SHA-256)
@@ -83,16 +91,9 @@ function showIdea() {
 }
 
 function sendEmail(idea) {
-    const emailContent = `
-        Dobrý den,
-
-        Tady je dnešní tip na rande:
-
-        ${idea}
-    `;
     emailjs.send("service_3ajmdvq", "template_c8gro55", {
         subject: 'Tip na rande',
-        content: emailContent,
+        content: idea,
     })
     .then(response => {
         // Zobrazení hlášky při úspěchu
