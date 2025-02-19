@@ -17,14 +17,21 @@ const oneTimeIdeas = [
     "Návštěva aquaparku"
 ];
 
-// Hash hesla (vygenerovaný bcryptem)
-const hashedPassword = "$2y$04$1VTOyuRsmNJEc5x7DrQMN.aE4KbleS.gAo.qBQsX16E.ErP8rrBZq";
+const storedPasswordHash = "1df0d19f5d4b6f0c0a4d9b0abca8cddaa8eb6698fe7b55a6112ce7959c50908d"; 
+
+async function hashPassword(password) {
+    const encoder = new TextEncoder();
+    const data = encoder.encode(password);
+    const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    return hashArray.map(byte => byte.toString(16).padStart(2, '0')).join('');
+}
 
 async function checkPassword() {
     const password = document.getElementById('password').value;
-    
-    const match = await bcrypt.compare(password, hashedPassword);
-    if (match) {
+    const hashedPassword = await hashPassword(password);
+
+    if (hashedPassword === storedPasswordHash) {
         document.getElementById('password-screen').classList.add('hidden');
         document.getElementById('content').classList.remove('hidden');
         showIdea();
@@ -37,7 +44,7 @@ function showIdea() {
     const dateElement = document.getElementById('date');
     const ideaElement = document.getElementById('idea');
 
-    const today = new Date().toISOString().split("T")[0]; // Formát YYYY-MM-DD
+    const today = new Date().toISOString().split("T")[0]; 
     const savedData = JSON.parse(localStorage.getItem("dailyIdea"));
 
     if (savedData && savedData.date === today) {
