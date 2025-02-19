@@ -104,18 +104,22 @@ function showIdea() {
     // Zobrazíme tlačítka pro odpověď
     buttonsElement.classList.remove('hidden');
 
-    // Nastavení událostí pro tlačítka
+    // Odstraníme staré event listenery (pokud existují)
+    const yesButton = document.getElementById('yesButton');
+    const noButton = document.getElementById('noButton');
+    yesButton.replaceWith(yesButton.cloneNode(true)); // "Reset" tlačítka
+    noButton.replaceWith(noButton.cloneNode(true)); // "Reset" tlačítka
+
     document.getElementById('yesButton').addEventListener('click', () => {
         savedData.accepted = true;
         localStorage.setItem("dailyIdea", JSON.stringify(savedData));
 
-        // Pokud je nápad z oneTimeIdeas, odstraníme ho
         if (oneTimeIdeas.includes(idea)) {
             oneTimeIdeas = oneTimeIdeas.filter(item => item !== idea);
         }
 
         sendEmail(idea);
-        buttonsElement.classList.add('hidden'); // Skrytí tlačítek po kliknutí
+        buttonsElement.classList.add('hidden'); 
     });
 
     document.getElementById('noButton').addEventListener('click', () => {
