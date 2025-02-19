@@ -1,4 +1,3 @@
-// Seznam nápadů
 const repeatableIdeas = [
     "Večeře a deskovky u mě",
     "Procházka s Candy a zmrzlina",
@@ -17,7 +16,7 @@ const repeatableIdeas = [
     "Procházka a čaj"
 ];
 
-const oneTimeIdeas = [
+let oneTimeIdeas = [
     "Veřejné bruslení",
     "Návštěva památky",
     "Hospoda a pokec",
@@ -59,7 +58,6 @@ async function checkPassword() {
 }
 
 function showIdea() {
-    let idea;
     const dateElement = document.getElementById('date');
     const ideaElement = document.getElementById('idea');
     const buttonsElement = document.getElementById('buttons');
@@ -67,21 +65,34 @@ function showIdea() {
     const today = new Date().toISOString().split("T")[0];
     const savedData = JSON.parse(localStorage.getItem("dailyIdea"));
 
-    if (savedData && savedData.date === today) {
-        ideaElement.textContent = savedData.idea;
-    } else {
-        if (oneTimeIdeas.length > 0 && Math.random() < 0.3) {
-            const randomIndex = Math.floor(Math.random() * oneTimeIdeas.length);
-            idea = oneTimeIdeas.splice(randomIndex, 1)[0];
-        } else {
-            idea = repeatableIdeas[Math.floor(Math.random() * repeatableIdeas.length)];
-        }
-
-        localStorage.setItem("dailyIdea", JSON.stringify({ date: today, idea }));
-
-        ideaElement.textContent = idea;
+    if (savedData && savedData.date === today && savedData.accepted) {
+        ideaElement.textContent = "Dnes už máš nápad vybraný! 🥰";
+        buttonsElement.classList.add('hidden');
+        return;
     }
 
+    let availableIdeas = [...repeatableIdeas, ...oneTimeIdeas];
+    if (savedData && savedData.date === today) {
+        availableIdeas = availableIdeas.filter(idea => !savedData.shownIdeas.includes(idea));
+    }
+
+    if (availableIdeas.length === 0) {
+        ideaElement.textContent = "Dnes už nemáme žádné další nápady. Zkus to zítra!";
+        buttonsElement.classList.add('hidden');
+        return;
+    }
+
+    const randomIndex = Math.floor(Math.random() * availableIdeas.length);
+    const idea = availableIdeas[randomIndex];
+
+    if (!savedData || savedData.date !== today) {
+        localStorage.setItem("dailyIdea", JSON.stringify({ date: today, shownIdeas: [idea], accepted: false }));
+    } else {
+        savedData.shownIdeas.push(idea);
+        localStorage.setItem("dailyIdea", JSON.stringify(savedData));
+    }
+
+    ideaElement.textContent = idea;
     dateElement.textContent = `${today}`;
     
     // Zobraz tlačítka pro odpověď
@@ -89,11 +100,19 @@ function showIdea() {
 
     // Nastavení událostí pro tlačítka
     document.getElementById('yesButton').addEventListener('click', () => {
+        const savedData = JSON.parse(localStorage.getItem("dailyIdea"));
+        savedData.accepted = true;
+        localStorage.setItem("dailyIdea", JSON.stringify(savedData));
+
+        if (oneTimeIdeas.includes(idea)) {
+            oneTimeIdeas = oneTimeIdeas.filter(item => item !== idea);
+        }
+
         sendEmail(idea);
         buttonsElement.classList.add('hidden'); // Skrytí tlačítek po kliknutí
     });
     document.getElementById('noButton').addEventListener('click', () => {
-        buttonsElement.classList.add('hidden'); // Skrytí tlačítek po kliknutí
+        showIdea();
     });
 }
 
@@ -111,4 +130,3 @@ function sendEmail(idea) {
         alert("Nastala chyba, musíš Tofinovi sama říct, že se ti tenhle tip líbí 😔");
     });
 }
-
