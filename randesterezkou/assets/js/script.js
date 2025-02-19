@@ -17,8 +17,10 @@ const oneTimeIdeas = [
     "Návštěva aquaparku"
 ];
 
-const storedPasswordHash = "1df0d19f5d4b6f0c0a4d9b0abca8cddaa8eb6698fe7b55a6112ce7959c50908d"; 
+// Uložený hash hesla (SHA-256)
+const storedPasswordHash = "7d46392f594b19f98efb79f0a3d9cddd4be1fbc79f51f98e1f58f62dd0cddcdd";
 
+// Funkce pro hashování hesla
 async function hashPassword(password) {
     const encoder = new TextEncoder();
     const data = encoder.encode(password);
@@ -27,6 +29,7 @@ async function hashPassword(password) {
     return hashArray.map(byte => byte.toString(16).padStart(2, '0')).join('');
 }
 
+// Ověření hesla
 async function checkPassword() {
     const password = document.getElementById('password').value;
     const hashedPassword = await hashPassword(password);
