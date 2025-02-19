@@ -30,7 +30,7 @@ const oneTimeIdeas = [
 
 // Uložený hash hesla (SHA-256)
 const storedPasswordHash = "7d46392f594b19f98efb79f0a3d9cddd4be1fbc79f51f98e1f58f62dd0cddcdd";
-
+const selectedIdea = "";
 // Funkce pro hashování hesla
 async function hashPassword(password) {
     const encoder = new TextEncoder();
@@ -76,6 +76,7 @@ function showIdea() {
         localStorage.setItem("dailyIdea", JSON.stringify({ date: today, idea }));
 
         ideaElement.textContent = idea;
+        selectedIdea = idea;
     }
 
     dateElement.textContent = `${today}`;
@@ -85,7 +86,7 @@ function showIdea() {
 
     // Nastavení událostí pro tlačítka
     document.getElementById('yesButton').addEventListener('click', () => {
-        sendEmail(idea);
+        sendEmail();
         buttonsElement.classList.add('hidden'); // Skrytí tlačítek po kliknutí
     });
     document.getElementById('noButton').addEventListener('click', () => {
@@ -93,13 +94,10 @@ function showIdea() {
     });
 }
 
-function sendEmail(idea) {
-    // Pokud je 'idea' objekt, získej z něj textovou hodnotu
-    const ideaText = typeof idea === 'object' ? JSON.stringify(idea) : idea;
-
+function sendEmail() {
     emailjs.send("service_3ajmdvq", "template_c8gro55", {
         subject: 'Tip na rande',
-        content: ideaText, // Zde posíláme text
+        content: selectedIdea, // Zde posíláme text
     })
     .then(response => {
         // Zobrazení hlášky při úspěchu
