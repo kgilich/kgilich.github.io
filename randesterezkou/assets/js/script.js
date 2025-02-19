@@ -8,9 +8,13 @@ const repeatableIdeas = [
     "Hra deskových her",
     "Projížďka na rekolech podél Vltavy",
     "Brusle a běh na Ladronce",
-    "Lezení a mekáč",
+    "Lezení/procházka a mekáč",
     "Sauna / Bazén",
-    "Výlet po okolí Prahy"
+    "Výlet po okolí Prahy",
+    "Přespávačka",
+    "Společný čas jentak",
+    "Masáž, čaj a pokec",
+    "Procházka a čaj"
 ];
 
 const oneTimeIdeas = [
@@ -18,14 +22,14 @@ const oneTimeIdeas = [
     "Návštěva památky",
     "Hospoda a pokec",
     "Výlet do zoo",
-    "Návštěva aquaparku",
     "Zajdeme si na masáž",
     "Pipča a chill",
     "Něco nového v Banh-Mi-Ba",
     "Jízda na koni",
     "Společné sledování západu slunce",
     "Úniková hra pro dva",
-    "Kreativní večer - výroba vlastního šperku"
+    "Kreativní večer - výroba vlastního šperku",
+    "Dobrovolničení"
 ];
 
 // Uložený hash hesla (SHA-256)
