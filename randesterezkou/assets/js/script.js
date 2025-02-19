@@ -73,8 +73,13 @@ function showIdea() {
     buttonsElement.classList.remove('hidden');
 
     // Nastavení událostí pro tlačítka
-    document.getElementById('yesButton').addEventListener('click', () => sendEmail(idea));
-    document.getElementById('noButton').addEventListener('click', () => buttonsElement.classList.add('hidden'));
+    document.getElementById('yesButton').addEventListener('click', () => {
+        sendEmail(idea);
+        buttonsElement.classList.add('hidden'); // Skrytí tlačítek po kliknutí
+    });
+    document.getElementById('noButton').addEventListener('click', () => {
+        buttonsElement.classList.add('hidden'); // Skrytí tlačítek po kliknutí
+    });
 }
 
 function sendEmail(idea) {
@@ -86,14 +91,16 @@ function sendEmail(idea) {
         ${idea}
     `;
 
-    emailjs.send("service_3ajmdvq","template_c8gro55", {
+    emailjs.send("service_3ajmdvq", "template_c8gro55", {
         subject: 'Tip na rande',
         content: emailContent,
-    }, 'AQjPK0xnpjX2YjDyO')
+    })
     .then(response => {
+        // Zobrazení hlášky při úspěchu
         alert("A Tofin už o tvém zájmu ví! 🥰");
     }, error => {
         console.log('EmailJS error:', error);
+        // Zobrazení hlášky při chybě
         alert("Nastala chyba, musíš Tofinovi sama říct, že se ti tenhle tip líbí 😔");
     });
 }
