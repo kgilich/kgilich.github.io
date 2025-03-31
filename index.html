@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JÁ | Cosmic Profile</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #8A2BE2;
+            --secondary: #00F5FF;
+            --dark: #0F0F1A;
+            --light: rgba(255, 255, 255, 0.9);
+            --glass: rgba(255, 255, 255, 0.1);
+            --gradient: linear-gradient(135deg, #8A2BE2 0%, #00F5FF 100%);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', 'Segoe UI', sans-serif;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+        
+        @keyframes gradientFlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        body {
+            background: var(--dark);
+            color: var(--light);
+            min-height: 100vh;
+            overflow-x: hidden;
+            background: linear-gradient(-45deg, #0F0F1A, #1A1A2E, #16213E, #0F3460);
+            background-size: 400% 400%;
+            animation: gradientFlow 15s ease infinite;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            position: relative;
+        }
+        
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+        
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle var(--duration) infinite ease-in-out;
+            opacity: 0;
+        }
+        
+        @keyframes twinkle {
+            0%, 100% { opacity: 0; }
+            50% { opacity: var(--opacity); }
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+            z-index: 1;
+        }
+        
+        .profile-pic-container {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 2rem;
+        }
+        
+        .profile-pic {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid transparent;
+            background: var(--gradient) border-box;
+            box-shadow: 0 0 30px rgba(138, 43, 226, 0.5);
+            animation: float 6s ease-in-out infinite;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .pulse {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: var(--gradient);
+            opacity: 0;
+            z-index: 1;
+            animation: pulse 3s ease-out infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(0.8); opacity: 0.7; }
+            100% { transform: scale(1.3); opacity: 0; }
+        }
+        
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-weight: 700;
+        }
+        
+        .title {
+            font-size: 1.3rem;
+            color: var(--secondary);
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .bio {
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            margin-bottom: 3rem;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            max-width: 700px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transform: perspective(500px) rotateX(0deg);
+            transition: transform 0.5s ease, box-shadow 0.5s ease;
+        }
+        
+        .bio:hover {
+            transform: perspective(500px) rotateX(5deg);
+            box-shadow: 0 15px 40px rgba(138, 43, 226, 0.3);
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+        
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--glass);
+            backdrop-filter: blur(5px);
+            color: white;
+            font-size: 1.8rem;
+            text-decoration: none;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .social-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient);
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .social-link:hover {
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 10px 25px rgba(138, 43, 226, 0.4);
+        }
+        
+        .social-link:hover::before {
+            opacity: 1;
+        }
+        
+        .email {
+            text-align: center;
+        }
+        
+        .email-btn {
+            display: inline-flex;
+            align-items: center;
+            padding: 1rem 2rem;
+            background: var(--gradient);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(138, 43, 226, 0.4);
+            border: none;
+            cursor: pointer;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .email-btn::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 100%);
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+        }
+        
+        .email-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(138, 43, 226, 0.6);
+        }
+        
+        .email-btn:hover::after {
+            transform: translateX(100%);
+        }
+        
+        .email-btn i {
+            margin-right: 10px;
+        }
+        
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .profile-pic-container {
+                width: 150px;
+                height: 150px;
+            }
+            
+            .bio {
+                padding: 1.5rem;
+            }
+            
+            .social-link {
+                width: 50px;
+                height: 50px;
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="stars" id="stars"></div>
+    <div class="particles" id="particles"></div>
+    
+    <div class="container">
+        <header>
+            <div class="profile-pic-container">
+                <div class="pulse"></div>
+                <img src="PROFILOVA_FOTKA.jpg" alt="Tvá profilová fotka" class="profile-pic">
+            </div>
+            <h1>Tvé Jméno</h1>
+            <p class="title">Creative Visionary • Digital Alchemist</p>
+        </header>
+        
+        <section class="bio">
+            <p>
+                👋 Vítej v mé digitální dimenzi! Jsem [Tvé Jméno], [tvá profese] s vášní pro [tvé zájmy]. 
+                S více než [X] lety zkušeností v [tvém oboru] vytvářím magii na pomezí technologie a kreativity.
+            </p>
+            <p>
+                🚀 Mou specializací je [tvá specializace]. Rád(a) překračuji hranice možného a transformuji 
+                nápady v realitu. Když zrovna nekóduju/nenavrhuju/neplánuju, najdeš mě [tvé koníčky].
+            </p>
+        </section>
+        
+        <div class="social-links">
+            <a href="https://instagram.com/tvujprofil" class="social-link" target="_blank" aria-label="Instagram">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://linkedin.com/in/tvujprofil" class="social-link" target="_blank" aria-label="LinkedIn">
+                <i class="fab fa-linkedin-in"></i>
+            </a>
+        </div>
+        
+        <div class="email">
+            <a href="mailto:tvuj@email.com" class="email-btn">
+                <i class="fas fa-paper-plane"></i> Kontaktuj mě
+            </a>
+        </div>
+    </div>
+
+    <script>
+        // Create stars
+        const starsContainer = document.getElementById('stars');
+        for (let i = 0; i < 100; i++) {
+            const star = document.createElement('div');
+            star.classList.add('star');
+            star.style.width = `${Math.random() * 3 + 1}px`;
+            star.style.height = star.style.width;
+            star.style.left = `${Math.random() * 100}%`;
+            star.style.top = `${Math.random() * 100}%`;
+            star.style.setProperty('--opacity', Math.random());
+            star.style.setProperty('--duration', `${Math.random() * 5 + 3}s`);
+            starsContainer.appendChild(star);
+        }
+        
+        // Create particles
+        const particlesContainer = document.getElementById('particles');
+        for (let i = 0; i < 30; i++) {
+            const particle = document.createElement('div');
+            particle.classList.add('particle');
+            particle.style.width = `${Math.random() * 10 + 5}px`;
+            particle.style.height = particle.style.width;
+            particle.style.background = `rgba(138, 43, 226, ${Math.random() * 0.3 + 0.1})`;
+            particle.style.borderRadius = '50%';
+            particle.style.position = 'absolute';
+            particle.style.left = `${Math.random() * 100}%`;
+            particle.style.top = `${Math.random() * 100}%`;
+            particle.style.opacity = '0';
+            
+            const animationDuration = `${Math.random() * 20 + 10}s`;
+            particle.style.animation = `float ${animationDuration} infinite ease-in-out`;
+            
+            particlesContainer.appendChild(particle);
+            
+            // Start animation with delay
+            setTimeout(() => {
+                particle.style.opacity = '1';
+            }, Math.random() * 2000);
+        }
+        
+        // Add floating animation to particles
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes float {
+                0%, 100% { 
+                    transform: translateY(0) translateX(0); 
+                }
+                25% { 
+                    transform: translateY(-20vh) translateX(10vw); 
+                }
+                50% { 
+                    transform: translateY(10vh) translateX(-10vw); 
+                }
+                75% { 
+                    transform: translateY(-10vh) translateX(-5vw); 
+                }
+            }
+        `;
+        document.head.appendChild(style);
+        
+        // Add hover effect to bio
+        const bio = document.querySelector('.bio');
+        bio.addEventListener('mousemove', (e) => {
+            const rect = bio.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+            
+            const angleY = (x - centerX) / 20;
+            const angleX = (centerY - y) / 20;
+            
+            bio.style.transform = `perspective(500px) rotateX(${angleX}deg) rotateY(${angleY}deg)`;
+        });
+        
+        bio.addEventListener('mouseleave', () => {
+            bio.style.transform = 'perspective(500px) rotateX(0deg) rotateY(0deg)';
+        });
+    </script>
+</body>
+</html>
