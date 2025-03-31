@@ -100,7 +100,7 @@
             border: 3px solid transparent;
             background: var(--gradient) border-box;
             box-shadow: 0 0 30px rgba(138, 43, 226, 0.5);
-            animation: float 6s ease-in-out infinite;
+            animation: floatWithPause 5s ease-in-out infinite;
             position: relative;
             z-index: 2;
         }
@@ -119,6 +119,12 @@
         @keyframes pulse {
             0% { transform: scale(0.8); opacity: 0.7; }
             100% { transform: scale(1.3); opacity: 0; }
+        }
+
+        @keyframes floatWithPause {
+            0%, 20% { transform: translateY(0); } /* 0-1s: na místě (20% z 5s) */
+            30%, 70% { transform: translateY(-15px); } /* 1.5-3.5s: pohyb */
+            80%, 100% { transform: translateY(0); } /* 4-5s: zpět a pauza */
         }
         
         h1 {
@@ -366,6 +372,10 @@
                 particle.style.opacity = '1';
             }, Math.random() * 2000);
         }
+
+        // profile pic
+        const profilePic = document.querySelector('.profile-pic');
+        profilePic.style.animation = 'floatWithPause 5s ease-in-out infinite';
         
         // Add floating animation to particles
         const style = document.createElement('style');
