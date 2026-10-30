@@ -1,416 +1,125 @@
 <!DOCTYPE html>
-<html lang="cs" class="dark">
+<html lang="cs">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kryštof Gilich</title>
-    
-    <!-- Google Fonts: Plus Jakarta Sans / Inter -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    
-    <!-- FontAwesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    
-    <!-- favicon -->
-    <link rel="shortcut icon" type="image/png" href="/images/favicon.png">
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Plus Jakarta Sans', 'sans-serif'],
-                    },
-                    colors: {
-                        brand: {
-                            purple: '#a855f7',
-                            cyan: '#06b6d4',
-                            blue: '#3b82f6',
-                            dark: '#0b0f19',
-                            card: 'rgba(17, 24, 39, 0.7)',
-                        }
-                    },
-                    animation: {
-                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-                        'float': 'float 6s ease-in-out infinite',
-                    },
-                    keyframes: {
-                        float: {
-                            '0%, 100%': { transform: 'translateY(0px)' },
-                            '50%': { transform: 'translateY(-10px)' },
-                        }
-                    }
-                }
-            }
-        }
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self'; style-src 'self'; script-src 'self'; base-uri 'none'; form-action 'none'">
+    <title>Kryštof Gilich – Infrastructure Engineer</title>
+    <meta name="description" content="Kryštof Gilich – Infrastructure Engineer se 6 lety zkušeností ze Seznam.cz. Cloudová infrastruktura, load balancery, Go, Kubernetes, Linux. Hledám nové příležitosti.">
+    <meta name="author" content="Kryštof Gilich">
+    <meta name="color-scheme" content="light dark">
+    <meta name="theme-color" content="#fafaf9" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#0c0a09" media="(prefers-color-scheme: dark)">
+    <link rel="canonical" href="https://gilich.cz/">
+
+    <!-- Open Graph / sdílení -->
+    <meta property="og:type" content="profile">
+    <meta property="og:locale" content="cs_CZ">
+    <meta property="og:site_name" content="Kryštof Gilich">
+    <meta property="og:title" content="Kryštof Gilich – Infrastructure Engineer">
+    <meta property="og:description" content="Cloudová infrastruktura, load balancery, Go a Kubernetes. Šest let ve Seznam.cz, teď hledám nové příležitosti.">
+    <meta property="og:url" content="https://gilich.cz/">
+    <meta property="og:image" content="https://gilich.cz/images/og.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Kryštof Gilich">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="/images/favicon.png">
+    <link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="preload" as="image" href="/images/me.webp" type="image/webp">
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Kryštof Gilich",
+        "url": "https://gilich.cz/",
+        "image": "https://gilich.cz/images/me.webp",
+        "email": "mailto:krystof@gilich.cz",
+        "jobTitle": "Infrastructure Engineer",
+        "worksFor": { "@type": "Organization", "name": "Seznam.cz" },
+        "knowsAbout": ["Cloud", "Kubernetes", "Go", "Python", "Ansible", "Linux", "Load balancing"],
+        "sameAs": [
+            "https://github.com/kgilich",
+            "https://linkedin.com/in/kgilich",
+            "https://instagram.com/kgilich"
+        ]
+    }
     </script>
-    
-    <!-- Custom styles for canvas and glassmorphic elements -->
-    <style>
-        /* Custom scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #0b0f19;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #1f2937;
-            border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #374151;
-        }
-
-        /* Ambient mesh background elements */
-        .ambient-glow {
-            position: fixed;
-            width: 600px;
-            height: 600px;
-            border-radius: 50%;
-            filter: blur(140px);
-            pointer-events: none;
-            opacity: 0.15;
-            z-index: 0;
-            transition: all 0.8s ease;
-        }
-        
-        .glow-1 {
-            top: -100px;
-            left: -100px;
-            background: radial-gradient(circle, rgba(168,85,247,1) 0%, rgba(59,130,246,0) 70%);
-        }
-
-        .glow-2 {
-            bottom: -100px;
-            right: -100px;
-            background: radial-gradient(circle, rgba(6,182,212,1) 0%, rgba(168,85,247,0) 70%);
-        }
-
-        /* Glassmorphism style */
-        .glass-card {
-            background: rgba(15, 23, 42, 0.65);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
-        }
-
-        .glass-pill {
-            background: rgba(255, 255, 255, 0.04);
-            backdrop-filter: blur(8px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-        }
-
-        .glass-pill:hover {
-            background: rgba(168, 85, 247, 0.12);
-            border-color: rgba(168, 85, 247, 0.3);
-            transform: translateY(-2px);
-        }
-
-        /* Spotlight hover effect container */
-        .spotlight-card {
-            position: relative;
-            overflow: hidden;
-        }
-
-        .spotlight-card::before {
-            content: '';
-            position: absolute;
-            top: var(--mouse-y, -100px);
-            left: var(--mouse-x, -100px);
-            width: 300px;
-            height: 300px;
-            background: radial-gradient(circle, rgba(168, 85, 247, 0.15), transparent 70%);
-            transform: translate(-50%, -50%);
-            pointer-events: none;
-            transition: opacity 0.3s ease;
-            opacity: 0;
-        }
-
-        .spotlight-card:hover::before {
-            opacity: 1;
-        }
-    </style>
 </head>
-<body class="bg-[#0b0f19] text-slate-100 min-h-screen font-sans relative selection:bg-purple-500/30 selection:text-purple-200 antialiased overflow-x-hidden flex flex-col justify-between">
+<body>
+    <!-- SVG ikony (inline, žádné externí knihovny) -->
+    <svg class="sprite" width="0" height="0" aria-hidden="true" focusable="false">
+        <symbol id="i-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></symbol>
+        <symbol id="i-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></symbol>
+        <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></symbol>
+        <symbol id="i-linkedin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></symbol>
+        <symbol id="i-instagram" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><path d="M17.5 6.5h.01"/></symbol>
+        <symbol id="i-github" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></symbol>
+    </svg>
 
-    <!-- Interactive Background Canvas -->
-    <canvas id="particleCanvas" class="fixed inset-0 pointer-events-none z-0 opacity-40"></canvas>
-    
-    <!-- Static Glows -->
-    <div class="ambient-glow glow-1"></div>
-    <div class="ambient-glow glow-2"></div>
+    <a class="skip-link" href="#obsah">Přeskočit na obsah</a>
 
-    <!-- Main Container -->
-    <main class="relative z-10 container mx-auto px-4 py-12 md:py-20 max-w-3xl flex-grow flex flex-col justify-center items-center">
-        
-        <!-- Profile Header Component -->
-        <div class="w-full text-center mb-8">
-            <div class="relative inline-block mb-6 group">
-                <!-- Pulse Glow Layer -->
-                <div class="absolute -inset-1 bg-gradient-to-r from-purple-600 to-cyan-500 rounded-full blur-md opacity-50 group-hover:opacity-80 transition duration-500 animate-pulse-slow"></div>
-                
-                <!-- Profile Image Avatar -->
-                <div class="relative w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden border-2 border-white/10 p-1 bg-[#0b0f19]">
-                    <img 
-                        src="images/me.png" 
-                        alt="Kryštof Gilich" 
-                        class="w-full h-full object-cover rounded-full filter contrast-[1.02] transition duration-500 group-hover:scale-105"
-                        onerror="this.onerror=null; this.src='https://placehold.co/400x400/1e1b4b/a855f7?text=KG';"
-                    />
+    <main id="obsah" class="page">
+        <header class="hero">
+            <img class="avatar" src="/images/me.webp" width="640" height="640" alt="Portrét Kryštofa Gilicha" decoding="async" fetchpriority="high">
+            <div class="hero-text">
+                <p class="status"><span class="dot" aria-hidden="true"></span>Otevřený novým příležitostem</p>
+                <h1>Kryštof Gilich</h1>
+                <p class="role">Infrastructure Engineer · <span>Seznam.cz</span></p>
+            </div>
+        </header>
+
+        <section aria-labelledby="o-mne">
+            <h2 id="o-mne">O mně</h2>
+            <p class="lead">Posledních 6 let jsem v Seznam.cz pomáhal udržet nejnavštěvovanější české služby v chodu. S mnoha kolegy jsem vyvíjel a spravoval cloudovou infrastrukturu a load balancery, které drží obrovský denní traffic.</p>
+            <p>Nyní hledám nové příležitosti, rád do své práce zapojuji AI a stále posouvám své znalosti. Ve volném čase lezu, nebo chodím do lesa se psem.</p>
+        </section>
+
+        <section aria-labelledby="technologie">
+            <h2 id="technologie">Technologie</h2>
+            <ul class="chips">
+                <li>Go</li>
+                <li>Cloud</li>
+                <li>Kubernetes</li>
+                <li>Ansible</li>
+                <li>Python</li>
+                <li>Linux</li>
+                <li>Load balancing</li>
+                <li>a další</li>
+            </ul>
+        </section>
+
+        <section aria-labelledby="kontakt">
+            <h2 id="kontakt">Kontakt</h2>
+            <div class="contact">
+                <div class="mail">
+                    <a class="btn" href="mailto:krystof@gilich.cz">
+                        <svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg>
+                        krystof@gilich.cz
+                    </a>
+                    <button class="btn btn-ghost" id="copy" type="button" aria-label="Zkopírovat e-mailovou adresu">
+                        <svg class="icon" aria-hidden="true"><use href="#i-copy" id="copy-icon"/></svg>
+                        <span id="copy-label">Kopírovat</span>
+                    </button>
                 </div>
-
-                <!-- Online / Status Badge -->
-                <div class="absolute bottom-2 right-2 bg-emerald-500/20 backdrop-blur-md border border-emerald-500/50 text-emerald-400 text-xs font-semibold px-2.5 py-1 rounded-full flex items-center gap-1.5 shadow-lg">
-                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
-                    <span class="w-2 h-2 rounded-full bg-emerald-400 -ml-3.5"></span>
-                    <span>Aktivní</span>
-                </div>
+                <ul class="social">
+                    <li><a href="https://github.com/kgilich" rel="me noopener" target="_blank" aria-label="GitHub (otevře se v novém okně)"><svg class="icon" aria-hidden="true"><use href="#i-github"/></svg><span>GitHub</span></a></li>
+                    <li><a href="https://linkedin.com/in/kgilich" rel="me noopener" target="_blank" aria-label="LinkedIn (otevře se v novém okně)"><svg class="icon" aria-hidden="true"><use href="#i-linkedin"/></svg><span>LinkedIn</span></a></li>
+                    <li><a href="https://instagram.com/kgilich" rel="me noopener" target="_blank" aria-label="Instagram (otevře se v novém okně)"><svg class="icon" aria-hidden="true"><use href="#i-instagram"/></svg><span>Instagram</span></a></li>
+                </ul>
             </div>
-
-            <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight mb-2 bg-clip-text text-transparent bg-gradient-to-r from-white via-slate-200 to-slate-400">
-                Kryštof Gilich
-            </h1>
-            
-            <!-- Job Title -->
-            <p class="text-slate-400 text-base md:text-lg font-medium flex items-center justify-center gap-2">
-                <span class="text-purple-400 font-semibold">Infrastructure Engineer</span> 
-                <span class="text-slate-600">•</span> 
-                <span class="text-cyan-400 font-medium">@ Seznam.cz</span>
-            </p>
-        </div>
-
-        <!-- Main Bio Card -->
-        <div class="w-full glass-card spotlight-card rounded-3xl p-6 md:p-8 mb-8 transition-all duration-300 hover:border-white/15">
-            <!-- Bio Paragraphs -->
-            <div class="space-y-4 text-slate-300 text-base md:text-lg leading-relaxed">
-                <p class="flex items-start gap-3">
-                    <span class="text-2xl shrink-0 leading-none">👋</span>
-                    <span>Posledních 6 let jsem v Seznam.cz pomáhal udržet nejnavštěvovanější české služby v chodu — s mnoha mými kolegy jsem vyvíjel a spravoval cloudovou infrastrukturu a load balancery, které drží obrovský denní traffic.</span>
-                </p>
-                
-                <p class="flex items-start gap-3">
-                    <span class="text-2xl shrink-0 leading-none">🚀</span>
-                    <span>Nyní hledám nové příležitosti, rád do své workflow zapojuji AI a stále posouvám své znalosti. Ve volném čase lezu, nebo chodím do lesa se psem.</span>
-                </p>
-            </div>
-
-            <!-- Divider -->
-            <div class="h-px w-full bg-gradient-to-r from-transparent via-white/10 to-transparent my-6"></div>
-
-            <!-- Tech Badges -->
-            <div class="space-y-3">
-                <span class="text-xs uppercase tracking-wider font-bold text-slate-400 block">Tech Stack & Technologie</span>
-                <div class="flex flex-wrap gap-2 md:gap-2.5">
-                    <span class="glass-pill text-purple-300 text-xs md:text-sm font-medium px-3.5 py-1.5 rounded-xl transition duration-200 flex items-center gap-1.5">
-                        <i class="fa-brands fa-golang text-purple-400"></i> GoLang
-                    </span>
-                    <span class="glass-pill text-cyan-300 text-xs md:text-sm font-medium px-3.5 py-1.5 rounded-xl transition duration-200 flex items-center gap-1.5">
-                        <i class="fa-solid fa-cloud text-cyan-400"></i> Cloud
-                    </span>
-                    <span class="glass-pill text-blue-300 text-xs md:text-sm font-medium px-3.5 py-1.5 rounded-xl transition duration-200 flex items-center gap-1.5">
-                        <i class="fa-solid fa-[#326ce5] fa-cubes text-blue-400"></i> Kubernetes
-                    </span>
-                    <span class="glass-pill text-red-300 text-xs md:text-sm font-medium px-3.5 py-1.5 rounded-xl transition duration-200 flex items-center gap-1.5">
-                        <i class="fa-solid fa-server text-red-400"></i> Ansible
-                    </span>
-                    <span class="glass-pill text-amber-300 text-xs md:text-sm font-medium px-3.5 py-1.5 rounded-xl transition duration-200 flex items-center gap-1.5">
-                        <i class="fa-brands fa-python text-amber-400"></i> Python
-                    </span>
-                    <span class="glass-pill text-amber-300 text-xs md:text-sm font-medium px-3.5 py-1.5 rounded-xl transition duration-200 flex items-center gap-1.5">
-                        <i class="fa-brands fa-linux text-amber-400"></i> Linux
-                    </span>
-                    <span class="glass-pill text-amber-300 text-xs md:text-sm font-medium px-3.5 py-1.5 rounded-xl transition duration-200 flex items-center gap-1.5">
-                        <i class="fa-solid fa-plus text-amber-400"></i> and others
-                    </span>
-                </div>
-            </div>
-        </div>
-
-        <!-- Action Buttons & Social Links -->
-        <div class="w-full flex flex-col sm:flex-row items-center justify-between gap-4">
-            
-            <!-- Primary Action: Email & Copy -->
-            <div class="w-full sm:w-auto flex items-center gap-2">
-                <!-- Direct Mailto Button -->
-                <a 
-                    href="mailto:krystof@gilich.cz" 
-                    class="flex-1 sm:flex-none inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-2xl bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white font-semibold text-sm transition-all duration-300 shadow-lg shadow-purple-900/30 hover:shadow-purple-700/50 hover:-translate-y-0.5 active:translate-y-0"
-                >
-                    <i class="fa-solid fa-paper-plane text-xs"></i>
-                    <span>Napiš mi</span>
-                </a>
-
-                <!-- Quick Copy Button -->
-                <button 
-                    id="copyEmailBtn"
-                    title="Kopírovat e-mail"
-                    class="p-3.5 rounded-2xl glass-card text-slate-300 hover:text-white hover:bg-white/10 transition-all duration-300 hover:-translate-y-0.5 active:translate-y-0 border border-white/10"
-                >
-                    <i class="fa-regular fa-copy text-base"></i>
-                </button>
-            </div>
-
-            <!-- Social Links Grid -->
-            <div class="flex items-center gap-3 w-full sm:w-auto justify-center">
-                <!-- Instagram -->
-                <a 
-                    href="https://instagram.com/kgilich" 
-                    target="_blank" 
-                    rel="noopener noreferrer" 
-                    aria-label="Instagram"
-                    class="w-12 h-12 rounded-2xl glass-card flex items-center justify-center text-slate-300 hover:text-pink-400 hover:border-pink-500/40 hover:bg-pink-500/10 transition-all duration-300 hover:-translate-y-1"
-                >
-                    <i class="fa-brands fa-instagram text-xl"></i>
-                </a>
-
-                <!-- LinkedIn -->
-                <a 
-                    href="https://linkedin.com/in/kgilich" 
-                    target="_blank" 
-                    rel="noopener noreferrer" 
-                    aria-label="LinkedIn"
-                    class="w-12 h-12 rounded-2xl glass-card flex items-center justify-center text-slate-300 hover:text-cyan-400 hover:border-cyan-500/40 hover:bg-cyan-500/10 transition-all duration-300 hover:-translate-y-1"
-                >
-                    <i class="fa-brands fa-linkedin-in text-xl"></i>
-                </a>
-
-                <!-- GitHub -->
-                <a 
-                    href="https://github.com/kgilich" 
-                    target="_blank" 
-                    rel="noopener noreferrer" 
-                    aria-label="GitHub"
-                    class="w-12 h-12 rounded-2xl glass-card flex items-center justify-center text-slate-300 hover:text-purple-400 hover:border-purple-500/40 hover:bg-purple-500/10 transition-all duration-300 hover:-translate-y-1"
-                >
-                    <i class="fa-brands fa-github text-xl"></i>
-                </a>
-            </div>
-        </div>
-
+            <p class="sr-only" id="copy-status" role="status" aria-live="polite"></p>
+        </section>
     </main>
 
-    <!-- Toast Notification -->
-    <div id="toast" class="fixed bottom-6 left-1/2 -translate-x-1/2 bg-slate-900/90 text-white border border-purple-500/30 backdrop-blur-xl px-5 py-3 rounded-2xl shadow-2xl flex items-center gap-3 opacity-0 pointer-events-none transition-all duration-300 transform translate-y-4 z-50">
-        <div class="w-6 h-6 rounded-full bg-purple-500/20 text-purple-400 flex items-center justify-center text-xs">
-            <i class="fa-solid fa-check"></i>
-        </div>
-        <span class="text-sm font-medium">E-mail <span class="text-purple-300 font-bold">krystof@gilich.cz</span> byl zkopírován!</span>
-    </div>
-
-    <!-- Minimalist Footer -->
-    <footer class="relative z-10 text-center py-6 text-xs text-slate-500">
-        <p>© <span id="currentYear"></span> Kryštof Gilich. Všechna práva vyhrazena.</p>
+    <footer class="footer">
+        <p>© <span id="year">2026</span> Kryštof Gilich</p>
     </footer>
 
-    <script>
-        // Set dynamic current year in footer
-        document.getElementById('currentYear').textContent = new Date().getFullYear();
-
-        // Email copy functionality with Toast Feedback
-        const copyBtn = document.getElementById('copyEmailBtn');
-        const toast = document.getElementById('toast');
-        const email = 'krystof@gilich.cz';
-
-        copyBtn.addEventListener('click', () => {
-            // Copy email to clipboard safely
-            const tempInput = document.createElement('input');
-            tempInput.value = email;
-            document.body.appendChild(tempInput);
-            tempInput.select();
-            document.execCommand('copy');
-            document.body.removeChild(tempInput);
-
-            // Show Toast
-            toast.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-4');
-            toast.classList.add('opacity-100', 'translate-y-0');
-
-            // Hide Toast after 3 seconds
-            setTimeout(() => {
-                toast.classList.remove('opacity-100', 'translate-y-0');
-                toast.classList.add('opacity-0', 'pointer-events-none', 'translate-y-4');
-            }, 3000);
-        });
-
-        // Mouse Spotlight Effect on Spotlight Cards
-        document.querySelectorAll('.spotlight-card').forEach(card => {
-            card.addEventListener('mousemove', e => {
-                const rect = card.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                card.style.setProperty('--mouse-x', `${x}px`);
-                card.style.setProperty('--mouse-y', `${y}px`);
-            });
-        });
-
-        // Ambient Dynamic Particle Canvas Background
-        const canvas = document.getElementById('particleCanvas');
-        const ctx = canvas.getContext('2d');
-        let width = canvas.width = window.innerWidth;
-        let height = canvas.height = window.innerHeight;
-
-        window.addEventListener('resize', () => {
-            width = canvas.width = window.innerWidth;
-            height = canvas.height = window.innerHeight;
-        });
-
-        // Particle System
-        const particles = [];
-        const particleCount = Math.min(Math.floor(width / 20), 50);
-
-        class Particle {
-            constructor() {
-                this.reset();
-            }
-
-            reset() {
-                this.x = Math.random() * width;
-                this.y = Math.random() * height;
-                this.size = Math.random() * 1.8 + 0.5;
-                this.vx = (Math.random() - 0.5) * 0.3;
-                this.vy = (Math.random() - 0.5) * 0.3;
-                this.alpha = Math.random() * 0.5 + 0.1;
-            }
-
-            update() {
-                this.x += this.vx;
-                this.y += this.vy;
-
-                if (this.x < 0 || this.x > width || this.y < 0 || this.y > height) {
-                    this.reset();
-                }
-            }
-
-            draw() {
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                ctx.fillStyle = `rgba(168, 85, 247, ${this.alpha})`;
-                ctx.fill();
-            }
-        }
-
-        for (let i = 0; i < particleCount; i++) {
-            particles.push(new Particle());
-        }
-
-        function animateParticles() {
-            ctx.clearRect(0, 0, width, height);
-            
-            particles.forEach(p => {
-                p.update();
-                p.draw();
-            });
-
-            requestAnimationFrame(animateParticles);
-        }
-
-        // Start Canvas Animation
-        animateParticles();
-    </script>
+    <script src="/main.js" defer></script>
 </body>
 </html>
