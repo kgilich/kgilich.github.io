@@ -13,8 +13,7 @@
         "copyAria": "Zkopírovat e-mailovou adresu",
         "copyStatus": "E-mail {email} byl zkopírován.",
         "copyStatusFailed": "Kopírování selhalo, e-mail je {email}.",
-        "showMore": "Zobrazit další ({n})",
-        "builtWith": "Postaveno s Eleventy, nasazeno přes GitHub Actions"
+        "showMore": "Zobrazit další ({n})"
     },
     "en": {
         "locale": "en_US",
@@ -30,7 +29,6 @@
         "copyAria": "Copy e-mail address",
         "copyStatus": "E-mail {email} copied.",
         "copyStatusFailed": "Copying failed, the e-mail is {email}.",
-        "showMore": "Show more ({n})",
-        "builtWith": "Built with Eleventy, deployed via GitHub Actions"
+        "showMore": "Show more ({n})"
     }
 }
