@@ -19,7 +19,7 @@ npm run lighthouse # Lighthouse pro /, /en/ a /web/ (po `npm run build`)
 | Zkušenosti | `src/_data/experience.json` |
 | Technologie | `src/_data/tech.json` |
 | Služby v menu | `src/_data/services.json` (+ nová stránka, např. `src/<sluzba>/index.njk`) |
-| Reference | `src/_data/references.json` – první 3 jsou vidět, zbytek pod „Zobrazit další“ |
+| Reference | `src/_data/references.json` – první 3 jsou vidět, zbytek pod „Zobrazit další“. Náhled webu: vyplň `image` (např. `/images/refs/nazev.webp`) a spusť `npm run screenshots` |
 | Stránka Jednoduché weby | `src/web/index.njk` (FAQ a cena ve front matter) |
 | CV ke stažení | nahraj `src/files/cv.pdf` (volitelně `cv-en.pdf`) – tlačítko se objeví samo |
 | Analytika | `goatcounter` v `src/_data/site.json` (kód z goatcounter.com) |

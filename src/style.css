@@ -401,6 +401,37 @@ p:last-child { margin-bottom: 0; }
 
 .ref { display: block; height: 100%; color: inherit; text-decoration: none; transition: border-color .15s; }
 a.ref:hover { border-color: var(--accent); }
+.ref .shot {
+    display: block;
+    margin: -.35rem -.4rem .85rem;
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: .6rem;
+}
+
+.ref .shot img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+    transition: transform .4s ease;
+}
+
+a.ref:hover .shot img { transform: scale(1.04); }
+
+.ref .shot-empty {
+    display: grid;
+    place-items: center;
+    color: var(--muted);
+    font-size: 2rem;
+    font-weight: 300;
+    background: transparent;
+    border-style: dashed;
+}
+
 .ref .tag { display: inline-block; margin-top: .6rem; font-size: .8125rem; font-weight: 600; color: var(--accent); }
 
 .more { margin-top: .75rem; }

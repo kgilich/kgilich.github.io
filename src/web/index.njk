@@ -78,13 +78,17 @@ eleventyComputed:
         {%- for r in references %}
         <li>
             <a class="card ref" href="{{ r.url }}" rel="noopener" target="_blank">
+                {%- if r.image %}
+                <span class="shot"><img src="{{ r.image }}" width="640" height="400" alt="" loading="lazy" decoding="async"></span>
+                {%- endif %}
                 <h3>{{ r.title }}</h3>
                 <p>{{ r.desc }}</p>
                 <span class="tag">{{ r.label }} ↗</span>
             </a>
         </li>
         {%- endfor %}
-        <li class="card card-placeholder">
+        <li class="card card-placeholder ref">
+            <span class="shot shot-empty" aria-hidden="true">+</span>
             <h3>Váš web?</h3>
             <p>Tady může být brzy i ten váš.</p>
         </li>
