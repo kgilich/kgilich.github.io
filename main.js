@@ -4,6 +4,20 @@
     const year = document.getElementById('year');
     if (year) year.textContent = new Date().getFullYear();
 
+    // Rozbalovací menu: zavřít klikem mimo nebo klávesou Esc
+    const menu = document.querySelector('.menu');
+    if (menu) {
+        document.addEventListener('click', (e) => {
+            if (menu.open && !menu.contains(e.target)) menu.open = false;
+        });
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && menu.open) {
+                menu.open = false;
+                menu.querySelector('summary').focus();
+            }
+        });
+    }
+
     const btn = document.getElementById('copy');
     const label = document.getElementById('copy-label');
     const icon = document.getElementById('copy-icon');
