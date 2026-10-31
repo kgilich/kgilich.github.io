@@ -1,0 +1,80 @@
+---
+layout: base.njk
+ogType: profile
+preload: /images/me.webp
+---
+{%- set t = i18n[lang] -%}
+<header class="hero">
+    <img class="avatar" src="/images/me.webp" width="640" height="640" alt="{{ h.avatarAlt }}" decoding="async" fetchpriority="high">
+    <div class="hero-text">
+        <p class="status"><span class="dot" aria-hidden="true"></span>{{ h.status }}</p>
+        <h1>{{ site.name }}</h1>
+        <p class="role">Infrastructure Engineer · <span>DevOps</span></p>
+    </div>
+</header>
+
+<section aria-labelledby="o-mne">
+    <h2 id="o-mne">{{ h.aboutTitle }}</h2>
+    {%- for p in h.about %}
+    <p class="lead">{{ p }}</p>
+    {%- endfor %}
+</section>
+
+<section aria-labelledby="zkusenosti">
+    <h2 id="zkusenosti">{{ h.experienceTitle }}</h2>
+    <ol class="timeline">
+        {%- for job in experience[lang] %}
+        <li>
+            <div class="timeline-head">
+                <h3>{{ job.role }} · <span>{{ job.company }}</span></h3>
+                <p class="period">{{ job.period }}</p>
+            </div>
+            <ul>
+                {%- for item in job.highlights %}
+                <li>{{ item }}</li>
+                {%- endfor %}
+            </ul>
+        </li>
+        {%- endfor %}
+    </ol>
+</section>
+
+<section aria-labelledby="technologie">
+    <h2 id="technologie">{{ h.techTitle }}</h2>
+    <ul class="chips">
+        {%- for item in tech %}
+        <li>{{ item }}</li>
+        {%- endfor %}
+        <li>{{ h.techMore }}</li>
+    </ul>
+</section>
+
+<section aria-labelledby="kontakt">
+    <h2 id="kontakt">{{ h.contactTitle }}</h2>
+    <div class="contact">
+        <div class="mail">
+            <a class="btn" href="mailto:{{ site.email }}">
+                <svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg>
+                {{ site.email }}
+            </a>
+            <button class="btn btn-ghost" id="copy" type="button" aria-label="{{ t.copyAria }}"
+                data-email="{{ site.email }}" data-label="{{ t.copy }}" data-copied="{{ t.copied }}" data-failed="{{ t.copyFailed }}"
+                data-status="{{ t.copyStatus }}" data-status-failed="{{ t.copyStatusFailed }}">
+                <svg class="icon" aria-hidden="true"><use href="#i-copy" id="copy-icon"/></svg>
+                <span id="copy-label">{{ t.copy }}</span>
+            </button>
+            {%- if cv[lang] %}
+            <a class="btn btn-ghost" href="{{ cv[lang] }}" download>
+                <svg class="icon" aria-hidden="true"><use href="#i-download"/></svg>
+                {{ h.cv }}
+            </a>
+            {%- endif %}
+        </div>
+        <ul class="social">
+            {%- for s in site.social %}
+            <li><a href="{{ s.url }}" rel="me noopener" target="_blank" aria-label="{{ s.name }} ({{ t.newWindow }})"><svg class="icon" aria-hidden="true"><use href="#i-{{ s.icon }}"/></svg><span>{{ s.name }}</span></a></li>
+            {%- endfor %}
+        </ul>
+    </div>
+    <p class="sr-only" id="copy-status" role="status" aria-live="polite"></p>
+</section>

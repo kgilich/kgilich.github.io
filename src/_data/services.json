@@ -1,0 +1,8 @@
+[
+    {
+        "url": "/web/",
+        "icon": "browser",
+        "cs": { "title": "Jednoduché weby", "desc": "Rychlé a cenově dostupné" },
+        "en": { "title": "Simple websites", "desc": "Fast and affordable (in Czech)" }
+    }
+]

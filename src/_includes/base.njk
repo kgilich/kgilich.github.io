@@ -1,0 +1,73 @@
+{%- set t = i18n[lang] -%}
+{%- set canonical = page.url | absolute(site.url) -%}
+{%- set gc = site.goatcounter -%}
+<!DOCTYPE html>
+<html lang="{{ lang }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self'{% if gc %} https://{{ gc }}.goatcounter.com{% endif %}; style-src 'self'; script-src 'self'{% if gc %} https://gc.zgo.at{% endif %}; connect-src 'self'{% if gc %} https://{{ gc }}.goatcounter.com{% endif %}; base-uri 'none'; form-action 'none'">
+    <title>{{ title }}</title>
+    <meta name="description" content="{{ description }}">
+    <meta name="author" content="{{ site.name }}">
+    {%- if noindex %}
+    <meta name="robots" content="noindex">
+    {%- endif %}
+    <meta name="color-scheme" content="light dark">
+    <meta name="theme-color" content="#fafaf9" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#0c0a09" media="(prefers-color-scheme: dark)">
+    {%- if not noindex %}
+    <link rel="canonical" href="{{ canonical }}">
+    {%- if alt %}
+    <link rel="alternate" hreflang="{{ lang }}" href="{{ canonical }}">
+    <link rel="alternate" hreflang="{{ t.langSwitch.lang }}" href="{{ alt | absolute(site.url) }}">
+    {%- endif %}
+
+    <!-- Open Graph / sdílení -->
+    <meta property="og:type" content="{{ ogType or 'website' }}">
+    <meta property="og:locale" content="{{ t.locale }}">
+    <meta property="og:site_name" content="{{ site.name }}">
+    <meta property="og:title" content="{{ ogTitle or title }}">
+    <meta property="og:description" content="{{ ogDescription or description }}">
+    <meta property="og:url" content="{{ canonical }}">
+    <meta property="og:image" content="{{ (ogImage or '/images/og.jpg') | absolute(site.url) }}">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="{{ ogImageAlt or site.name }}">
+    <meta name="twitter:card" content="summary_large_image">
+    {%- endif %}
+
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="/images/favicon.png">
+    <link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+    <link rel="stylesheet" href="/style.css">
+    {%- if preload %}
+    <link rel="preload" as="image" href="{{ preload }}" type="image/webp">
+    {%- endif %}
+    {%- if jsonld %}
+
+    <script type="application/ld+json">{{ jsonld | dump | safe }}</script>
+    {%- endif %}
+</head>
+<body>
+    {% include "icons.njk" %}
+
+    <a class="skip-link" href="#obsah">{{ t.skip }}</a>
+
+    {% include "nav.njk" %}
+
+    <main id="obsah" class="page">
+        {{ content | safe }}
+    </main>
+
+    <footer class="footer">
+        <p>© <span id="year">{{ build.year }}</span> {{ site.name }}</p>
+        <p><a href="{{ site.repo }}/actions" rel="noopener" target="_blank">{{ t.builtWith }}</a></p>
+    </footer>
+
+    <script src="/main.js" defer></script>
+    {%- if gc %}
+    <script data-goatcounter="https://{{ gc }}.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+    {%- endif %}
+</body>
+</html>

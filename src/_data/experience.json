@@ -1,0 +1,24 @@
+{
+    "cs": [
+        {
+            "company": "Seznam.cz",
+            "role": "Infrastructure Engineer",
+            "period": "6 let",
+            "highlights": [
+                "Vývoj a správa cloudové infrastruktury pro nejnavštěvovanější české služby",
+                "Load balancery, které drží obrovský denní traffic"
+            ]
+        }
+    ],
+    "en": [
+        {
+            "company": "Seznam.cz",
+            "role": "Infrastructure Engineer",
+            "period": "6 years",
+            "highlights": [
+                "Built and operated cloud infrastructure for the most visited Czech online services",
+                "Load balancers handling huge daily traffic"
+            ]
+        }
+    ]
+}

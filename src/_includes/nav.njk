@@ -1,0 +1,27 @@
+{%- set t = i18n[lang] -%}
+<nav class="topnav" aria-label="{{ t.nav }}">
+    {%- if page.url != t.home %}
+    <a class="home" href="{{ t.home }}"><svg class="icon" aria-hidden="true"><use href="#i-chevron"/></svg>{{ site.name }}</a>
+    {%- endif %}
+    <div class="topnav-end">
+        <details class="menu">
+            <summary class="menu-btn">
+                <svg class="icon" aria-hidden="true"><use href="#i-sparkle"/></svg>
+                {{ t.services }}
+                <svg class="icon chev" aria-hidden="true"><use href="#i-chevron"/></svg>
+                <span class="ping" aria-hidden="true"></span>
+            </summary>
+            <ul>
+                {%- for s in services %}
+                <li>
+                    <a href="{{ s.url }}"{% if page.url == s.url %} aria-current="page"{% endif %}{% if lang != 'cs' %} hreflang="cs"{% endif %}>
+                        <svg class="icon" aria-hidden="true"><use href="#i-{{ s.icon }}"/></svg>
+                        <span><strong>{{ s[lang].title }}</strong><small>{{ s[lang].desc }}</small></span>
+                    </a>
+                </li>
+                {%- endfor %}
+            </ul>
+        </details>
+        <a class="lang" href="{{ alt or i18n[t.langSwitch.lang].home }}" hreflang="{{ t.langSwitch.lang }}" lang="{{ t.langSwitch.lang }}" title="{{ t.langSwitch.title }}">{{ t.langSwitch.label }}</a>
+    </div>
+</nav>

@@ -1,0 +1,113 @@
+---
+layout: base.njk
+lang: cs
+title: Jednoduché weby za rozumnou cenu – Kryštof Gilich
+description: Rychlé, moderní a cenově dostupné weby pro živnostníky, malé firmy a spolky. Od návrhu po spuštění, včetně domény a hostingu.
+ogTitle: Jednoduché weby za rozumnou cenu
+ogDescription: Rychlé, moderní a cenově dostupné weby pro živnostníky, malé firmy a spolky.
+ogImage: /images/og-web.png
+ogImageAlt: Jednoduché weby za rozumnou cenu – Kryštof Gilich
+price: 6499
+faq:
+  - q: Kolik web stojí?
+    a: Jednoduchý web začíná na 6 499 Kč jednorázově. Přesnou cenu podle rozsahu znáte vždy předem, ještě než začnu pracovat.
+  - q: Jak dlouho to trvá?
+    a: Záleží hlavně na rozsahu a na tom, jak rychle budou připravené texty a fotky. Termín si domluvíme hned na začátku.
+  - q: Budu platit i něco měsíčně?
+    a: Za samotný web ne. Jednoduchým webům obvykle stačí hosting zdarma, platíte jen doménu – zpravidla pár stovek korun ročně. Vše probereme předem.
+  - q: Co když budu chtít web později upravit?
+    a: Drobné úpravy po spuštění rád udělám. Větší změny nebo nové stránky domluvíme zvlášť.
+eleventyComputed:
+  jsonld:
+    "@context": https://schema.org
+    "@graph":
+      - "@type": Service
+        name: Jednoduché weby
+        description: "{{ description }}"
+        url: "{{ site.url }}web/"
+        areaServed: CZ
+        provider:
+          "@type": Person
+          name: "{{ site.name }}"
+          url: "{{ site.url }}"
+          email: "mailto:{{ site.email }}"
+        offers:
+          "@type": Offer
+          priceCurrency: CZK
+          priceSpecification:
+            "@type": PriceSpecification
+            minPrice: "{{ price }}"
+            priceCurrency: CZK
+---
+<header class="intro">
+    <p class="status"><span class="dot" aria-hidden="true"></span>Přijímám nové zakázky</p>
+    <h1>Jednoduchý web, který prostě funguje</h1>
+    <p class="lead">Potřebujete web pro svou firmu, živnost, spolek nebo akci? Udělám vám rychlý a moderní web bez zbytečných složitostí – za cenu, která dává smysl.</p>
+</header>
+
+<section aria-labelledby="co-dostanete">
+    <h2 id="co-dostanete">Co dostanete</h2>
+    <ul class="cards">
+        <li class="card"><h3>Rychlost</h3><p>Lehký web bez zbytečností, načte se okamžitě i na slabém připojení.</p></li>
+        <li class="card"><h3>Mobil i počítač</h3><p>Vypadá dobře na každém zařízení.</p></li>
+        <li class="card"><h3>Doména a hosting</h3><p>Pomůžu se vším technickým, nemusíte nic řešit.</p></li>
+        <li class="card"><h3>Vidět ve vyhledávačích</h3><p>Základní SEO a správné náhledy při sdílení na sociálních sítích.</p></li>
+    </ul>
+</section>
+
+<section aria-labelledby="jak-to-probiha">
+    <h2 id="jak-to-probiha">Jak to probíhá</h2>
+    <ol class="steps">
+        <li><strong>Napíšete mi</strong><span>Stačí pár vět o tom, co potřebujete.</span></li>
+        <li><strong>Domluvíme se</strong><span>Upřesníme obsah, vzhled a cenu předem.</span></li>
+        <li><strong>Připravím návrh</strong><span>Ukážu vám první verzi a společně ji doladíme.</span></li>
+        <li><strong>Spustíme</strong><span>Web je online a já zůstávám k dispozici pro úpravy.</span></li>
+    </ol>
+</section>
+
+<section aria-labelledby="cena">
+    <h2 id="cena">Cena</h2>
+    <p class="price"><strong>od 6 499 Kč</strong><span>jednorázově</span></p>
+    <p>Přesnou cenu znáte vždy předem, bez skrytých poplatků.</p>
+</section>
+
+<section aria-labelledby="reference">
+    <h2 id="reference">Reference</h2>
+    {#- Reference se upravují v src/_data/references.json; první 3 jsou vidět, zbytek pod tlačítkem #}
+    <ul class="cards" data-limit="3" data-more="{{ i18n[lang].showMore }}">
+        {%- for r in references %}
+        <li>
+            <a class="card ref" href="{{ r.url }}" rel="noopener" target="_blank">
+                <h3>{{ r.title }}</h3>
+                <p>{{ r.desc }}</p>
+                <span class="tag">{{ r.label }} ↗</span>
+            </a>
+        </li>
+        {%- endfor %}
+        <li class="card card-placeholder">
+            <h3>Váš web?</h3>
+            <p>Tady může být brzy i ten váš.</p>
+        </li>
+    </ul>
+</section>
+
+<section aria-labelledby="faq">
+    <h2 id="faq">Časté otázky</h2>
+    <div class="faq">
+        {%- for item in faq %}
+        <details>
+            <summary>{{ item.q }}</summary>
+            <p>{{ item.a }}</p>
+        </details>
+        {%- endfor %}
+    </div>
+</section>
+
+<section aria-labelledby="kontakt">
+    <h2 id="kontakt">Kontakt</h2>
+    <p>Napište mi, co potřebujete, a ozvu se s návrhem.</p>
+    <a class="btn" href="mailto:{{ site.email }}?subject=Popt%C3%A1vka%20webu">
+        <svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg>
+        {{ site.email }}
+    </a>
+</section>

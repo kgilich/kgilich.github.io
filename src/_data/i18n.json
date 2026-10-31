@@ -1,0 +1,36 @@
+{
+    "cs": {
+        "locale": "cs_CZ",
+        "home": "/",
+        "skip": "Přeskočit na obsah",
+        "nav": "Navigace",
+        "services": "Služby",
+        "langSwitch": { "label": "EN", "title": "English version", "lang": "en" },
+        "newWindow": "otevře se v novém okně",
+        "copy": "Kopírovat",
+        "copied": "Zkopírováno",
+        "copyFailed": "Zkopírujte ručně",
+        "copyAria": "Zkopírovat e-mailovou adresu",
+        "copyStatus": "E-mail {email} byl zkopírován.",
+        "copyStatusFailed": "Kopírování selhalo, e-mail je {email}.",
+        "showMore": "Zobrazit další ({n})",
+        "builtWith": "Postaveno s Eleventy, nasazeno přes GitHub Actions"
+    },
+    "en": {
+        "locale": "en_US",
+        "home": "/en/",
+        "skip": "Skip to content",
+        "nav": "Navigation",
+        "services": "Services",
+        "langSwitch": { "label": "CZ", "title": "Česká verze", "lang": "cs" },
+        "newWindow": "opens in a new window",
+        "copy": "Copy",
+        "copied": "Copied",
+        "copyFailed": "Copy manually",
+        "copyAria": "Copy e-mail address",
+        "copyStatus": "E-mail {email} copied.",
+        "copyStatusFailed": "Copying failed, the e-mail is {email}.",
+        "showMore": "Show more ({n})",
+        "builtWith": "Built with Eleventy, deployed via GitHub Actions"
+    }
+}

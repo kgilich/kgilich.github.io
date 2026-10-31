@@ -1,0 +1,19 @@
+{
+  "name": "gilich.cz",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "eleventy --serve --port=8080",
+    "build": "eleventy",
+    "test": "npm run test:html && npm run test:links",
+    "test:html": "html-validate \"_site/**/*.html\"",
+    "test:links": "linkinator _site --recurse --skip \"https?://(?!localhost|127)\"",
+    "lighthouse": "lhci autorun"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^3.1.7",
+    "@lhci/cli": "^0.15.1",
+    "html-validate": "^11.17.0",
+    "linkinator": "^8.1.0"
+  }
+}
