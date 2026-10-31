@@ -18,6 +18,28 @@
         });
     }
 
+    // Seznamy s data-limit: ukázat jen prvních N položek, zbytek pod tlačítkem
+    document.querySelectorAll('[data-limit]').forEach((list) => {
+        const limit = Number(list.dataset.limit);
+        const extra = [...list.children]
+            .filter((li) => !li.classList.contains('card-placeholder'))
+            .slice(limit);
+        if (!extra.length) return;
+
+        extra.forEach((li) => { li.hidden = true; });
+
+        const more = document.createElement('button');
+        more.type = 'button';
+        more.className = 'btn btn-ghost more';
+        more.textContent = `Zobrazit další (${extra.length})`;
+        more.addEventListener('click', () => {
+            extra.forEach((li) => { li.hidden = false; });
+            more.remove();
+            extra[0].querySelector('a')?.focus({ preventScroll: true });
+        });
+        list.after(more);
+    });
+
     const btn = document.getElementById('copy');
     const label = document.getElementById('copy-label');
     const icon = document.getElementById('copy-icon');

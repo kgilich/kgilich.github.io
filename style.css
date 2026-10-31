@@ -349,6 +349,8 @@ p:last-child { margin-bottom: 0; }
 a.ref:hover { border-color: var(--accent); }
 .ref .tag { display: inline-block; margin-top: .6rem; font-size: .8125rem; font-weight: 600; color: var(--accent); }
 
+.more { margin-top: .75rem; }
+
 /* Footer */
 .footer {
     padding: 1.5rem 1.25rem 2rem;
